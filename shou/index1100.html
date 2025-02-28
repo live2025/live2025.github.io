@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html>
+
+
+<!-- Mirrored from www.bzdanye9.com/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 28 Feb 2025 21:34:32 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>圈子搜索</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0,user-scalable=0">
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+            outline: none;
+            font-family: 微软雅黑;
+            list-style: none;
+            -moz-user-select: none;
+            -khtml-user-select: none;
+            user-select: none;
+            -webkit-user-select: none;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+        
+        html {
+            font-size: 20px;
+        }
+        
+        a {
+            text-decoration: none;
+        }
+        
+        body {
+            background: #FFF;
+        }
+        
+        img {
+            pointer-events: none;
+            -webkit-pointer-events: none;
+            -ms-pointer-events: none;
+            -moz-pointer-events: none;
+        }
+        
+        .btn {
+            padding: 10px 15px;
+            border-top: 1px solid #F2F2F2;
+            background-color: #FFF;
+            position: fixed;
+            bottom: 0;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        .btn .expire-date {
+            padding-bottom: 10px;
+            font-size: 12px;
+            font-weight: 500;
+            color: #999999;
+        }
+        
+        .btn .btn-join {
+            width: 100%;
+            text-align: center;
+            padding: 12px 0;
+            background-color: #00A4FF;
+            font-size: 16px;
+            font-weight: 500;
+            color: #FFFFFF;
+            border-radius: 10px;
+        }
+        
+        .community-info {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background: #FFF;
+            overflow: hidden;
+        }
+        
+        .community-info .count {
+            padding: 15px 8px;
+            border-radius: 10px 10px 0 0;
+            margin-top: -10px;
+            position: relative;
+            z-index: 122;
+            background: #fff;
+            overflow: hidden;
+            /*border-bottom: 1px solid #F7F7F7;*/
+        }
+        
+        .community-info .count .item {
+            width: 33%;
+            font-size: 15px;
+            font-weight: bold;
+            color: #1A1A1A;
+            text-align: center;
+        }
+        
+        .community-info .count .item> :last-child {
+            font-size: 12px;
+            font-weight: 500;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .community-info .count .item:first-child {
+            color: #1CCDA6;
+        }
+        
+        .community-info .count .line {
+            width: 1px;
+            height: 16px;
+            background: #F2F2F2;
+        }
+        
+        .community-info .unlock-items {
+            padding: 10px 15px;
+            padding-bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .community-info .unlock-items .item {
+            width: 49%;
+            height: 40px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #666666;
+            background: #F3F2F8;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .community-info .unlock-items .item>img {
+            width: 25px;
+            height: 25px;
+            margin-right: 5px;
+        }
+        
+        .community-info .tips {
+            padding: 10px 15px;
+        }
+        
+        .community-info .tips .tip {
+            background: linear-gradient(-45deg, #FF7693 0%, #FEACBA 100%);
+            border-radius: 10px;
+            padding: 10px 0;
+            font-size: 16px;
+            font-weight: 500;
+            color: #ffffff;
+            text-align: center;
+        }
+        
+        .community-user-info {
+            background-color: #FFF;
+            padding: 0 15px;
+        }
+        
+        .community-user-info .master {
+            padding: 20px 0;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        
+        .community-user-info .master>img {
+            width: 45px;
+            height: 45px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        
+        .community-user-info .master .info {
+            margin-left: 15px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #4D4D4D;
+        }
+        
+        .community-user-info .master .info> :last-child {
+            font-size: 14px;
+            font-weight: 500;
+            color: #999999;
+            margin-top: 5px;
+        }
+        
+        .community-user-info .partner .title {
+            padding: 10px 0;
+            font-size: 14px;
+            font-weight: 500;
+            color: #1A1A1A;
+        }
+        
+        .community-user-info .partner {
+            padding: 10px 0 45px 0;
+        }
+        
+        .community-user-info .partner .partner-panel {
+            width: 100%;
+            overflow-x: auto;
+        }
+        
+        .community-user-info .partner .partner-panel .users {
+            display: flex;
+            width: max-content;
+        }
+        
+        .community-user-info .partner .partner-panel .users .item {
+            width: 50px;
+            text-align: center;
+            font-size: 11px;
+            font-weight: 500;
+            color: #4d4d4d;
+            margin-right: 15px;
+        }
+        
+        .community-user-info .partner .partner-panel .users .item:last-child {
+            margin-right: 0px;
+        }
+        
+        .community-user-info .partner .partner-panel .users .item>img {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+        }
+        
+        .community-user-info .partner .partner-panel .users .item>div {
+            width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-top: 10px;
+        }
+        
+        .join-info {
+            padding: 20px 15px;
+            background-color: #FFF;
+            margin-bottom: 100px;
+        }
+        
+        .join-info .title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #1A1A1A;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        .join-info .content {
+            font-size: 16px;
+            font-weight: 400;
+            color: #000000;
+            margin-top: 10px;
+            /*line-height: 21px;*/
+            text-indent: -1em;
+            padding-left: 1em;
+            /* font-weight: bold; */
+        }
+        
+        .div-split {
+            height: 5px;
+            width: 100%;
+            background-color: #F2F2F2;
+        }
+        
+        .community-user-info .master .good-creative-icon {
+            background: url(Resource/images/icons/exclusive_img_Pendant.html) no-repeat center center;
+            background-size: 100% 100%;
+            width: 55px;
+            height: 26px;
+            display: inline-block;
+            position: absolute;
+            top: 7px;
+            left: -5px;
+        }
+        
+        .community-user-info .master img.good-creative {
+            border: 1px #ECD5AC solid;
+        }
+        
+        .community-info .community-background {
+            height: 370px;
+            position: relative;
+        }
+        
+        .community-info .community-background .background-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .community-info .community-background .base-info {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+        }
+        
+        .community-info .community-background .base-info .name {
+            padding: 0 15px;
+            display: flex;
+            align-items: center;
+            margin-top: 30px;
+            /*border-bottom: 1px solid #F7F7F7;*/
+        }
+        
+        .community-info .community-background .base-info .left>img {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 2px solid #F2F2F2;
+        }
+        
+        .community-info .community-background .base-info .left {
+            position: relative;
+        }
+        
+        .community-info .community-background .base-info .left .good-creative-icon {
+            background: url(Resource/images/icons/exclusive_img_circledjcz.html) no-repeat center center;
+            background-size: 100% 100%;
+            width: 30px;
+            height: 30px;
+            display: inline-block;
+            position: absolute;
+            right: 0px;
+        }
+        
+        .community-info .community-background .base-info .right {
+            margin-left: 15px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #FFFFFF;
+            text-shadow: 0px 1px 3px rgba(26, 26, 26, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .community-info .community-background .base-info .right .pay-icon {
+            background: url(Resource/images/icons/circle_icon_PaymentID.html) no-repeat right center;
+            background-size: 15px 15px;
+            padding-right: 0px;
+        }
+        
+        .community-info .community-background .base-info .right> :last-child {
+            font-size: 14px;
+            font-weight: 500;
+            color: #ffffff;
+            margin-top: 10px;
+        }
+        
+        .community-info .community-background .base-info .photos {
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 15px;
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+        }
+        
+        .community-info .community-background .base-info .photos .item {
+            width: calc((100vw - 60px) / 4);
+            height: calc((100vw - 60px) / 4);
+            max-width: 90px;
+            max-height: 90px;
+            position: relative;
+        }
+        
+        .community-info .community-background .base-info .photos .item:last-child {
+            margin-right: 0;
+        }
+        
+        .community-info .community-background .base-info .photos .item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 1px solid #FFFFFF;
+        }
+        
+        .community-info .community-background .base-info .photos .item .more {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            /* background: RGBA(0, 0, 0, 0.5); */
+            border-radius: 10px;
+            font-size: 16px;
+            color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .sousuo {
+            width: 98%;
+            margin: 0 auto;
+            height: 50px;
+            border: 2px solid black;
+            background: white;
+            border-radius: 10px;
+        }
+        
+        .photos .btn {
+            width: 70px;
+            height: 40px;
+            position: absolute;
+            right: 20px;
+            top: 4px;
+            background: black;
+            color: white;
+            line-height: 20px;
+            text-align: center;
+            border-radius: 5px;
+        }
+        
+        .btn:hover {
+            background: #00A4FF;
+        }
+        
+        .contents {
+            text-indent: 0.1em;
+            display: flex;
+            margin: 30px auto;
+            align-items: center;
+        }
+        
+        input {
+         -webkit-user-select:text;}
+    </style>
+</head>
+
+<body>
+    <div style="width: 100%; margin: 0px auto;position: relative;overflow: hidden;">
+        <div class="community-info" style="overflow: hidden;">
+            <div class="community-background"> <img class="background-image" src="img/zhenaifen.png">
+                <div class="base-info">
+                    <div class="photos">
+                        <input placeholder="请输入主页提示的ID进入" id="inputId" type="text" style="height: 50px;width: 100%;border: 2px solid black;border-radius: 10px;font-size: 16px;text-indent: 3em;">
+                        <img src="img/%e6%90%9c%e7%b4%a2.png" width="30" alt="" style="position: absolute;left: 20px;top: 8px;">
+                        <div class="btn" onclick="sousuo()">搜索</div>
+                    </div>
+                </div>
+            </div>
+            <div class="count" style="overflow: auto;height: calc(100vh - 334px);">
+                <div style="color: black;text-align: left;text-indent:0.1em">猜你喜欢</div>
+                <div class="contents">
+                    <div style="width: 75px;height: 75px;">
+                        <img src="img/%e5%a4%b4%e5%83%8f1.jpg" width="75" style="border-radius: 2px;">
+                    </div>
+                    <div style="margin-left: 15px;">
+                        <div style="font-weight: bold; ">蔡文姬呀</div>
+                        <div style="font-size: 16px;color: #666;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;width: calc(100%);">蔡文姬·只有进圈才能看不一样的我</div>
+                        <div style="font-size: 16px;color: #666;">贴子450+</div>
+                    </div>
+                </div>
+                <div class="contents">
+                    <div style="width: 75px;height: 75px;">
+                        <img src="img/%e5%a4%b4%e5%83%8f2.jpg" width="75" style="border-radius: 2px;">
+                    </div>
+                    <div style="margin-left: 15px;">
+                        <div style="font-weight: bold; ">冯落落秘密基地</div>
+                        <div style="font-size: 16px;color: #666;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;width: calc(100%);">冯落落·欢迎入圈 进入就是永久 外面不公开的本人</div>
+                        <div style="font-size: 16px;color: #666;">贴子700+</div>
+                    </div>
+                </div>
+                
+                <div class="contents">
+                    <div style="width: 75px;height: 75px;">
+                        <img src="img/%e5%a4%b4%e5%83%8f4.jpg" width="75" style="border-radius: 2px;">
+                    </div>
+                    <div style="margin-left: 15px;">
+                        <div style="font-weight: bold; ">小高爱跳舞</div>
+                        <div style="font-size: 16px;color: #666;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;width: calc(100%);">欢迎入圈 进入就是永久 外面不公开的本人！</div>
+                        <div style="font-size: 16px;color: #666;">贴子180+</div>
+                    </div>
+                </div>
+
+               <div class="contents">
+                    <div style="width: 75px;height: 75px;">
+                        <img src="img/%e5%a4%b4%e5%83%8f3.jpg" width="75" style="border-radius: 2px;">
+                    </div>
+                    <div style="margin-left: 15px;">
+                        <div style="font-weight: bold; ">互联网那些事儿</div>
+                        <div style="font-size: 16px;color: #666;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;width: calc(100%);">彪悍的兔·互联网前沿观察者，资深企业家。</div>
+                        <div style="font-size: 16px;color: #666;">贴子1800+</div>
+                    </div>
+                </div>
+
+
+
+                <div class="contents">
+                    <div style="width: 75px;height: 75px;">
+                        <img src="img/%e5%a4%b4%e5%83%8f5.jpg" width="75" style="border-radius: 2px;">
+                    </div>
+                    <div style="margin-left: 15px;">
+                        <div style="font-weight: bold; ">泡泡的后花园</div>
+                        <div style="font-size: 16px;color: #666;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;width: calc(100%);">定制视频 图片 举牌</div>
+                        <div style="font-size: 16px;color: #666;">贴子900+</div>
+                    </div>
+                </div>
+                <div class="contents">
+                    <div style="width: 75px;height: 75px;">
+                        <img src="img/%e5%a4%b4%e5%83%8f6.jpg" width="75" style="border-radius: 2px;">
+                    </div>
+                    <div style="margin-left: 15px;">
+                        <div style="font-weight: bold; ">智慧姐姐</div>
+                        <div style="font-size: 16px;color: #666;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;width: calc(100%);">圈子更新的都是永久优质内容..</div>
+                        <div style="font-size: 16px;color: #666;">贴子1000+</div>
+                    </div>
+                </div>
+
+               <div class="contents">
+                    <div style="width: 75px;height: 75px;">
+                        <img src="img/%e5%a4%b4%e5%83%8f7.png" width="75" style="border-radius: 2px;">
+                    </div>
+                    <div style="margin-left: 15px;">
+                        <div style="font-weight: bold; ">艺术画集</div>
+                        <div style="font-size: 16px;color: #666;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;width: calc(100%);">每日艺术欣赏·知名艺术文化研究者。</div>
+                        <div style="font-size: 16px;color: #666;">贴子1800+</div>
+                    </div>
+        </div>
+
+
+
+                <div id="tanchuang" style="width: 90%;position: absolute;top: 0px;left: 50%;transform: translate(-50%);background: white;border: 1px solid rgba(0, 0, 0, 0.215);z-index: 100000;padding: 10px;display: none;">
+                    <div style="width: 100%;height: 50px;background: white;">
+                        提示信息
+                    </div>
+                    <div style="width: 100%;padding: 5px 15px;">
+                        您输入的id有误!
+                    </div>
+                    <div style="text-align: center;margin: 10px auto 0;">
+                        <div style="width: 120px;height: 40px;background: rgb(0, 0, 0);border: 1px solid rgba(0, 0, 0, 0.286);color: white;line-height: 40px;border-radius: 10px;margin: 10px auto 0;" onclick="quxiao()">确定</div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+<script>
+    function sousuo() {
+        let data = document.getElementById("inputId").value;
+        data = data.toString()
+        if (data == '045') {
+            window.location.href = 'https://www.pdzgw.cn/zb/045.html'
+        }else if (data == '053') {
+            window.location.href = 'https://www.pdzgw.cn/zb/053.html'
+        }else if (data == '190') {
+            window.location.href = 'https://www.pdzgw.cn/zb/190.html'
+        }else if (data == '88') {
+            window.location.href = 'https://www.pdzgw.cn/zb/045.html'
+        }else if (data == '168') {
+            window.location.href = 'https://1.bzdanye6.com/choumi007.html'
+        }else if (data == '2898722') {
+            window.location.href = 'https://ct.mquan.fun/cfAUFQ3Ba'
+        }
+          }
+
+    function quxiao() {
+        document.getElementById('tanchuang').style.display = 'none'
+    }
+</script>
+
+
+
+</html>
