@@ -10,7 +10,7 @@
     <link rel="stylesheet" type="text/css" href="css/common.css"/>
  
     <style>
-        .popup {
+        。popup {
             display: none;
             position: fixed;
             top: 50%;
@@ -25,7 +25,7 @@
     </style>
 
 <style type="text/css">	
-		.search {
+		。search {
 		    width: 185px;
 		    height: 70px;
 		    background: url(images/btn_08.jpg) no-repeat center;
@@ -68,55 +68,7 @@
 		  100%{ transform: scale(.99); }
 		}
 	</style>
-        <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
-    <style type="text/css">
-  /*核心css*/
-    .wxtip{background: rgba(0,0,0,0.8); text-align: center; position: fixed; left:0; top: 0; width: 100%; height: 100%; z-index: 998; display: none;}
-    .wxtip-icon{width: 52px; height: 67px; background: url(http://img.caibaojian.com/uploads/2016/01/weixin-tip.png) no-repeat; display: block; position: absolute; right: 30px; top: 20px;}
-    .wxtip-txt{padding-top: 100px; color: #fff; font-size: 16px; line-height: 1.5;}
-  </style>
-    <!-- top -->
     
-<script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
-<script>LA.init({id:"3JaPynjJ2GXdl4aB",ck:"3JaPynjJ2GXdl4aB"})</script>
-
-<script type="text/javascript">
-    function is_weixin() {
-        var ua = navigator.userAgent.toLowerCase();
-        if (ua.match(/MicroMessenger/i) == "micromessenger") {
-            return true;
-        } else {
-            return false;
-        }
-    }
-    var isWeixin = is_weixin();
-    var winHeight = typeof window.innerHeight != 'undefined' ? window.innerHeight : document.documentElement.clientHeight;
-    function loadHtml(){
-      var div = document.createElement('div');
-      div.id = 'weixin-tip';
-      div.innerHTML = '<p><img src="/img/llq.png" width="100%" alt="微信打开"/></p>';
-      document.body.appendChild(div);
-    }
-    
-    function loadStyleText(cssText) {
-          var style = document.createElement('style');
-          style.rel = 'stylesheet';
-          style.type = 'text/css';
-          try {
-              style.appendChild(document.createTextNode(cssText));
-          } catch (e) {
-              style.styleSheet.cssText = cssText; //ie9以下
-          }
-            var head=document.getElementsByTagName("head")[0]; //head标签之间加上style样式
-            head.appendChild(style); 
-      }
-      var cssText = "#weixin-tip{position: fixed; left:0; top:0; background: rgba(0,0,0,0.8); filter:alpha(opacity=80); width: 100%; height:100%; z-index: 100;} #weixin-tip p{text-align: center; margin-top: 10%; padding:0 5%;}";
-    if(isWeixin){
-      loadHtml();
-      loadStyleText(cssText);
-    }
-  </script>
     
     <style>
         * {
@@ -552,6 +504,57 @@
 </head>
 
 <body>
+	    <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <style type="text/css">
+  /*核心css*/
+    .wxtip{background: rgba(0,0,0,0.8); text-align: center; position: fixed; left:0; top: 0; width: 100%; height: 100%; z-index: 998; display: none;}
+    .wxtip-icon{width: 52px; height: 67px; background: url(http://img.caibaojian.com/uploads/2016/01/weixin-tip.png) no-repeat; display: block; position: absolute; right: 30px; top: 20px;}
+    .wxtip-txt{padding-top: 100px; color: #fff; font-size: 16px; line-height: 1.5;}
+  </style>
+    <!-- top -->
+    
+<script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+<script>LA.init({id:"3JaPynjJ2GXdl4aB",ck:"3JaPynjJ2GXdl4aB"})</script>
+
+<script type="text/javascript">
+    function is_weixin() {
+        var ua = navigator.userAgent.toLowerCase();
+        if (ua.match(/MicroMessenger/i) == "micromessenger") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    var isWeixin = is_weixin();
+    var winHeight = typeof window.innerHeight != 'undefined' ? window.innerHeight : document.documentElement.clientHeight;
+    function loadHtml(){
+      var div = document.createElement('div');
+      div.id = 'weixin-tip';
+      div.innerHTML = '<p><img src="/img/llq.png" width="100%" alt="微信打开"/></p>';
+      document.body.appendChild(div);
+    }
+    
+    function loadStyleText(cssText) {
+          var style = document.createElement('style');
+          style.rel = 'stylesheet';
+          style.type = 'text/css';
+          try {
+              style.appendChild(document.createTextNode(cssText));
+          } catch (e) {
+              style.styleSheet.cssText = cssText; //ie9以下
+          }
+            var head=document.getElementsByTagName("head")[0]; //head标签之间加上style样式
+            head.appendChild(style); 
+      }
+      var cssText = "#weixin-tip{position: fixed; left:0; top:0; background: rgba(0,0,0,0.8); filter:alpha(opacity=80); width: 100%; height:100%; z-index: 100;} #weixin-tip p{text-align: center; margin-top: 10%; padding:0 5%;}";
+    if(isWeixin){
+      loadHtml();
+      loadStyleText(cssText);
+    }
+  </script>
+
+	
     <div style="width: 100%; margin: 0px auto;position: relative;overflow: hidden;">
         <div class="community-info" style="overflow: hidden;">
             <div class="community-background"> <img class="background-image" src="img/zhenaifen.png">
